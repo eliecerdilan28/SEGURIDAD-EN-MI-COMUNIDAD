@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title> SEGURIDAD EN MI COMUNIDAD </title>
+
+<style>
+    /* Menú de Navegación */
+    .navbar {
+        background-color: rgba(10, 5, 81, 0.9);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 30px;
+        position: sticky;
+        top: 0;
+        z-index: 2000;
+        backdrop-filter: blur(10px);
+        box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    }
+
+    .navbar .logo {
+        color: white;
+        font-weight: bold;
+        font-size: 1.2em;
+        text-decoration: none;
+    }
+
+    .nav-links {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        gap: 20px;
+    }
+
+    .nav-links a {
+        color: rgba(255, 255, 255, 0.8);
+        text-decoration: none;
+        font-weight: 500;
+        transition: 0.3s;
+    }
+
+    .nav-links a:hover {
+        color: #ffffff;
+        text-shadow: 0 0 10px rgba(255,255,255,0.5);
+    }
+
+    /* Botón flotante de pánico */
+    .btn-panico {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        background-color: #ff0000;
+        color: white;
+        padding: 15px 25px;
+        border-radius: 50px;
+        text-decoration: none;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+        box-shadow: 0px 5px 15px rgba(0,0,0,0.5);
+        z-index: 1000;
+        transition: 0.3s;
+    }
+
+    .btn-panico:hover {
+        transform: scale(1.1);
+        background-color: #d10000;
+    }
+
+    /* Configuración del Fondo de la Página */
+    body {
+        margin: 0;
+        font-family: 'Segoe UI', sans-serif;
+        color: #ffffff; 
+        
+        /* =========================================================================
+           CAMBIA 'tu-imagen.jpg' POR EL NOMBRE DE TU ARCHIVO DE IMAGEN
+           Nota: La capa linear-gradient añade una sombra oscura encima de la imagen
+           para que el texto siempre sea fácil de leer.
+           ========================================================================= */
+        background-image: linear-gradient(rgba(10, 5, 81, 0.75), rgba(10, 5, 81, 0.75)), url('fondo777.jpg');
+        
+        background-size: cover;          /* Hace que la imagen cubra toda la pantalla */
+        background-position: center;     /* Centra la imagen */
+        background-repeat: no-repeat;    /* Evita que la imagen se repita */
+        background-attachment: fixed;    /* Mantiene la imagen fija al hacer scroll */
+    }  
+    
+    header {
+        text-align: center;
+        padding: 40px 20px;
+        background: rgba(0,0,0,0.4);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    header h1 {
+        font-size: 3em;
+        margin: 15px 0 0 0;
+        color: #ffffff; 
+        text-transform: uppercase;
+    }
+
+    header p {
+        font-size: 1.2em;
+        opacity: 0.8;
+    }
+
+    /* Estilos para el Logo Interactivo */
+    .logo-container {
+        cursor: pointer;
+        transition: transform 0.3s ease, filter 0.3s ease;
+    }
+
+    .logo-container:hover {
+        transform: scale(1.08);
+        filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.6));
+    }
+
+    .logo-img {
+        width: 130px;
+        height: 130px;
+        object-fit: cover;
+        border-radius: 50%;
+        border: 3px solid rgba(255, 255, 255, 0.8);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    }
+
+    /* Modal / Cuadro de zoom para ver el logo de cerca */
+    .modal-logo {
+        display: none;
+        position: fixed;
+        z-index: 3000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.85);
+        backdrop-filter: blur(8px);
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .modal-logo-content {
+        max-width: 80%;
+        max-height: 80vh;
+        border-radius: 20px;
+        box-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
+        border: 2px solid rgba(255, 255, 255, 0.5);
+        animation: zoomIn 0.3s ease;
+    }
+
+    @keyframes zoomIn {
+        from { transform: scale(0.5); opacity: 0; }
+        to { transform: scale(1); opacity: 1; }
+    }
+
+    .modal-close {
+        position: absolute;
+        top: 25px;
+        right: 35px;
+        color: #ffffff;
+        font-size: 40px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: 0.2s;
+    }
+
+    .modal-close:hover {
+        color: #ff4d4d;
+    }
+
+    .container {
+        padding: 40px;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 25px;
+    }
+
+    .card {
+        background: rgba(255,255,255,0.15); 
+        padding: 20px;
+        border-radius: 15px;
+        backdrop-filter: blur(10px);
+        transition: transform 0.3s, box-shadow 0.3s;
+        border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+    }
+
+    .card h2 {
+        color: #ffffff; 
+        margin-top: 10px;
+    }
+
+    .icon {
+        font-size: 40px;
+        margin-bottom: 10px;
+    }
+
+    footer {
+        text-align: center;
+        padding: 20px;
+        background: rgba(0,0,0,0.4);
+        font-size: 0.9em;
+        opacity: 0.7;
+    }
+
+    .btn {
+        display: inline-block;
+        margin-top: 10px;
+        padding: 10px 20px;
+        border-radius: 20px;
+        background: #ffffff; 
+        color: #0a0551; 
+        text-decoration: none;
+        font-weight: bold;
+        transition: 0.3s;
+    }
+
+    .btn:hover {
+        background: #0a0551;
+        color: #ffffff;
+    }
+
+    @media (max-width: 600px) {
+        .navbar {
+            flex-direction: column;
+            gap: 10px;
+            text-align: center;
+        }
+        .nav-links {
+            font-size: 0.9em;
+        }
+        header h1 {
+            font-size: 2em;
+        }
+    }
+</style>
+</head>
+
+<body>
+
+<nav class="navbar">
+    <a href="#" class="logo">🛡️ Seguridad Comunidad</a>
+    <ul class="nav-links">
+        <li><a href="prevencion.html">Prevención</a></li>
+        <li><a href="denuncia.html">Denuncia</a></li>
+        <li><a href="participacion.html">Videos</a></li>
+        <li><a href="zonas seguras.html">Zonas Seguras</a></li>
+    </ul>
+</nav>
+    
+<header>
+    <div class="logo-container" onclick="abrirModalLogo()">
+        <img src="logo de proyecto.jpg" alt="Logo Seguridad en mi Comunidad" class="logo-img" id="img-logo">
+    </div>
+    
+    <h1>SEGURIDAD EN MI COMUNIDAD</h1>
+    <p>Construyendo comunidades más seguras juntos</p>
+</header>
+
+<div id="modalLogo" class="modal-logo" onclick="cerrarModalLogo()">
+    <span class="modal-close" onclick="cerrarModalLogo()">&times;</span>
+    <img class="modal-logo-content" id="imgModal">
+</div>
+
+<section class="container">
+    <div class="card">
+        <div class="icon">👮‍♂️</div>
+        <h2>Prevención</h2>
+        <p>Aprende a proteger a tu familia y comunidad con nuestras guías prácticas, consejos de seguridad y alertas vecinales.</p>
+        <a href="prevencion.html" class="btn">Ver más</a>
+    </div>
+
+    <div class="card"> 
+        <div class="icon">📢</div>
+        <h2>Denuncia</h2>
+        <p>Reportar delitos es clave para mantener el orden y proteger a todos.</p>
+        <a href="denuncia.html" class="btn">Denunciar</a>
+    </div>
+
+    <div class="card"> 
+        <div class="icon">📹</div>
+        <h2>Videos</h2>
+        <p>La educación visual es vital para mejorar nuestra seguridad colectiva.</p>
+        <a href="participacion.html" class="btn">Ver Videos</a>
+    </div>
+
+    <div class="card">
+        <div class="icon">📍</div>
+        <h2>Zonas Seguras</h2>
+        <p>Identifica lugares seguros y puntos de apoyo en tu comunidad.</p>
+        <a href="zonas seguras.html" class="btn">Explorar</a>
+    </div>
+</section>
+
+<footer>
+    © 2026 SEGURIDAD EN MI COMUNIDAD | Proyecto de la escuela
+</footer>
+
+<!-- Botón de pánico -->
+<a href="#" class="btn-panico" onclick="enviarAlerta(event)">
+    <span style="font-size: 20px; margin-right: 10px;">🚨</span>
+    PEDIR AYUDA
+</a>
+
+<script>
+// Funciones para la vista previa ampliada del logo
+function abrirModalLogo() {
+    document.getElementById("modalLogo").style.display = "flex";
+    document.getElementById("imgModal").src = document.getElementById("img-logo").src;
+}
+
+function cerrarModalLogo() {
+    document.getElementById("modalLogo").style.display = "none";
+}
+
+// Envío de alerta pidiendo Alta Precisión (GPS)
+function enviarAlerta(event) {
+    event.preventDefault();
+    
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+            (pos) => {
+                const mapLink = `https://www.google.com/maps?q=${pos.coords.latitude},${pos.coords.longitude}`;
+                enviarNotificacion(mapLink);
+            },
+            (err) => {
+                alert("⚠️ No diste permiso de ubicación o falló. Enviando alerta sin mapa.");
+                enviarNotificacion(null);
+            },
+            { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 } 
+        );
+    } else {
+        enviarNotificacion(null);
+    }
+}
+
+// Envío simple para evitar bloqueos del navegador (CORS)
+function enviarNotificacion(link) {
+    const topic = 'NECESITO_AYUDA';
+    
+    const message = link ? `🚨 ¡NECESITO AYUDA!\n\n📍 Mi ubicación actual es:\n${link}` : "🚨 ¡NECESITO AYUDA!\n\n(No se pudo obtener la ubicación)";
+    
+    fetch(`https://ntfy.sh/${topic}`, {
+        method: 'POST',
+        body: message
+    })
+    .then(response => {
+        if(response.ok) {
+            alert("✅ ¡Alerta enviada exitosamente a tu celular!");
+        } else {
+            alert("❌ Hubo un problema con el servidor de ntfy.");
+        }
+    })
+    .catch(error => {
+        alert("❌ Error al enviar. Verifica tu conexión a internet.");
+        console.error(error);
+    });
+}
+</script>
+
+</body>
+</html>
