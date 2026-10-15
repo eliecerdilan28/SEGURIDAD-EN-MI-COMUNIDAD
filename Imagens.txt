@@ -1,0 +1,12 @@
+﻿body {
+    /* El nombre 'fondo.jpg' debe ser igual al de tu imagen en el escritorio */
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('fondo.jpg');
+    
+    background-size: cover;       /* Cubre toda la pantalla sin deformarse */
+    background-position: center;  /* Centra la foto */
+    background-attachment: fixed; /* La imagen no se mueve al bajar con el mouse */
+    color: white;
+    margin: 0;
+    padding: 20px;
+    font-family: 'Segoe UI', sans-serif;
+}

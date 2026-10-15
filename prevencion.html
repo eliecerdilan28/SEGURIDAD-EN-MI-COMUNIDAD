@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prevención - Seguridad en mi Comunidad</title>
+
+<style>
+    /* Heredamos los estilos generales de tu página principal */
+    .navbar {
+        background-color: rgba(10, 5, 81, 0.9);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 30px;
+        position: sticky;
+        top: 0;
+        z-index: 2000;
+        backdrop-filter: blur(10px);
+        box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    }
+
+    .navbar .logo {
+        color: white;
+        font-weight: bold;
+        font-size: 1.2em;
+        text-decoration: none;
+    }
+
+    .nav-links {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        gap: 20px;
+    }
+
+    .nav-links a {
+        color: rgba(255, 255, 255, 0.8);
+        text-decoration: none;
+        font-weight: 500;
+        transition: 0.3s;
+    }
+
+    .nav-links a:hover {
+        color: #ffffff;
+        text-shadow: 0 0 10px rgba(255,255,255,0.5);
+    }
+
+    .btn-panico {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        background-color: #ff0000;
+        color: white;
+        padding: 15px 25px;
+        border-radius: 50px;
+        text-decoration: none;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+        box-shadow: 0px 5px 15px rgba(0,0,0,0.5);
+        z-index: 1000;
+        transition: 0.3s;
+    }
+
+    .btn-panico:hover {
+        transform: scale(1.1);
+        background-color: #d10000;
+    }
+
+    body {
+        margin: 0;
+        font-family: 'Segoe UI', sans-serif;
+        background: linear-gradient(135deg, #7544e0, #6c15a1, #741a98);
+        color: #ffffff;
+        background-image: linear-gradient(rgba(10, 5, 81, 0.75), rgba(42, 48, 161, 0.75)), url('054d5471-3b83-4433-917f-619fe6eb4a5f.jpg');
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+    }  
+    
+    header {
+        text-align: center;
+        padding: 40px 20px;
+        background: rgba(0,0,0,0.4);
+    }
+
+    header h1 {
+        font-size: 2.5em;
+        margin: 0;
+        color: #ffcc00;
+    }
+
+    header p {
+        font-size: 1.1em;
+        opacity: 0.9;
+        margin-top: 10px;
+    }
+
+    /* Estilos específicos para la sección de consejos */
+    .container {
+        padding: 40px;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .consejos-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 25px;
+    }
+
+    .consejo-item {
+        background: rgba(255, 255, 255, 0.15);
+        padding: 25px;
+        border-radius: 15px;
+        border-left: 5px solid #ffcc00;
+        backdrop-filter: blur(10px);
+        transition: 0.3s;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+
+    .consejo-item:hover {
+        transform: translateY(-5px);
+        background: rgba(255, 255, 255, 0.25);
+        box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+    }
+
+    /* Estilo para las imágenes dentro de cada tarjeta */
+    .consejo-item img {
+        width: 100%;
+        height: 160px;
+        object-fit: cover;
+        border-radius: 10px;
+        margin-bottom: 15px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        cursor: pointer; /* Indica que la imagen es clickeable */
+        transition: transform 0.2s, filter 0.2s;
+    }
+
+    .consejo-item img:hover {
+        filter: brightness(1.1);
+        transform: scale(1.02);
+    }
+
+    .consejo-item h3 {
+        margin-top: 0;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 1.3em;
+        color: #ffffff;
+    }
+
+    .consejo-item p {
+        line-height: 1.6;
+        opacity: 0.9;
+    }
+
+    .btn-volver {
+        display: inline-block;
+        margin: 20px 0 40px 40px;
+        padding: 10px 20px;
+        border-radius: 20px;
+        background: #ffffff;
+        color: #0a0551;
+        text-decoration: none;
+        font-weight: bold;
+        transition: 0.3s;
+    }
+
+    .btn-volver:hover {
+        background: #0a0551;
+        color: #ffffff;
+    }
+
+    footer {
+        text-align: center;
+        padding: 20px;
+        background: rgba(0,0,0,0.4);
+        font-size: 0.9em;
+        opacity: 0.7;
+        margin-top: 20px;
+    }
+
+    /* Modal / Lightbox para el zoom de la imagen */
+    .modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.85);
+        backdrop-filter: blur(8px);
+        z-index: 3000;
+        justify-content: center;
+        align-items: center;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    .modal.active {
+        display: flex;
+        opacity: 1;
+    }
+
+    .modal-content {
+        max-width: 85%;
+        max-height: 85vh;
+        border-radius: 12px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+        border: 2px solid rgba(255, 255, 255, 0.2);
+        animation: zoomIn 0.3s ease;
+    }
+
+    @keyframes zoomIn {
+        from { transform: scale(0.7); }
+        to { transform: scale(1); }
+    }
+
+    .close-modal {
+        position: absolute;
+        top: 20px;
+        right: 35px;
+        color: #ffffff;
+        font-size: 40px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: 0.2s;
+    }
+
+    .close-modal:hover {
+        color: #ffcc00;
+    }
+
+    /* Ajuste para dispositivos móviles */
+    @media (max-width: 600px) {
+        .navbar {
+            flex-direction: column;
+            gap: 10px;
+            text-align: center;
+        }
+        .btn-volver {
+            margin: 20px auto;
+            display: block;
+            width: max-content;
+        }
+    }
+</style>
+</head>
+
+<body>
+
+<nav class="navbar">
+    <a href="index.html" class="logo">🛡️ Seguridad Comunidad</a>
+    <ul class="nav-links">
+        <li><a href="prevencion.html" style="color: #ffffff; text-shadow: 0 0 10px rgba(255,255,255,0.5);">Prevención</a></li>
+        <li><a href="denuncia.html">Denuncia</a></li>
+        <li><a href="participacion.html">Participación</a></li>
+        <li><a href="zonas seguras.html">Zonas Seguras</a></li>
+    </ul>
+</nav>
+    
+<header>
+    <h1>CONSEJOS DE SEGURIDAD PARA TU BARRIO</h1>
+    <p>La prevención comienza con acciones diarias. Implementa estos hábitos para mejorar tu seguridad y la de tus vecinos.</p>
+</header>
+
+<a href="index.html" class="btn-volver">⬅️ Aprende Jugando</a>
+
+<section class="container">
+    <div class="consejos-grid">
+        
+        <!-- 1. Iluminación Estratégica -->
+        <div class="consejo-item">
+            <img src="iluminacion.jpg" alt="Iluminación Estratégica">
+            <h3>💡 Iluminación Estratégica</h3>
+            <p>Mantén bien iluminadas las entradas de tu casa (puertas y ventanas). Si notas postes de luz fundidos en la calle, repórtalos inmediatamente a la junta vecinal o alcaldía.</p>
+        </div>
+
+        <!-- 2. Grupos de Alerta Vecinal -->
+        <div class="consejo-item">
+            <img src="grupos.jpg" alt="Grupos de Alerta Vecinal">
+            <h3>📱 Grupos de Alerta Vecinal</h3>
+            <p>Crea o únete a un grupo de WhatsApp exclusivo para emergencias con tus vecinos. Mantengan comunicación constante sobre vehículos o personas sospechosas merodeando la zona.</p>
+        </div>
+
+        <!-- 3. Control de Accesos -->
+        <div class="consejo-item">
+            <img src="control de accesos.jpg" alt="Control de Accesos">
+            <h3>🔑 Control de Accesos</h3>
+            <p>Asegúrate de cerrar con llave puertas y portones incluso si estás en casa. Evita abrir la puerta a encuestadores, técnicos o vendedores que no estén plenamente identificados.</p>
+        </div>
+
+        <!-- 4. Rutas y Horarios -->
+        <div class="consejo-item">
+            <img src="rutas y horarios.jpg" alt="Rutas y Horarios">
+            <h3>🚶 Rutas y Horarios</h3>
+            <p>Evita caminar solo por zonas oscuras, callejones o terrenos baldíos. Procura variar tus rutas y horarios al salir o regresar a casa para no ser un objetivo predecible.</p>
+        </div>
+
+        <!-- 5. Seguridad en Vehículos -->
+        <div class="consejo-item">
+            <img src="seguridad de vehiculos.jpg" alt="Seguridad en Vehículos">
+            <h3>🚗 Seguridad en Vehículos</h3>
+            <p>No dejes mochilas, bolsas u objetos de valor a la vista dentro de tu automóvil. Si es posible, estaciónalo en un garaje o en zonas bien iluminadas y transitadas.</p>
+        </div>
+
+        <!-- 6. Números de Emergencia -->
+        <div class="consejo-item">
+            <img src="numeros de emergencia.jpg" alt="Números de Emergencia">
+            <h3>🚨 Números de Emergencia</h3>
+            <p>Ten a la mano y a la vista (por ejemplo, en el refrigerador) los números de la Policía (110 en Bolivia), Bomberos (119) y de la posta médica o PAC de tu barrio.</p>
+        </div>
+
+    </div>
+</section>
+
+<!-- Modal para ver la imagen ampliada -->
+<div id="imageModal" class="modal">
+    <span class="close-modal">&times;</span>
+    <img class="modal-content" id="imgZoom" alt="Imagen Ampliada">
+</div>
+
+<footer>
+    <p>&copy; Seguridad Ciudadana - Prevención Vecinal</p>
+</footer>
+
+<script>
+    const modal = document.getElementById('imageModal');
+    const modalImg = document.getElementById('imgZoom');
+    const closeModal = document.querySelector('.close-modal');
+    const images = document.querySelectorAll('.consejo-item img');
+
+    // Al hacer clic en cualquier imagen del consejo, se abre el modal
+    images.forEach(img => {
+        img.addEventListener('click', () => {
+            modalImg.src = img.src;
+            modalImg.alt = img.alt;
+            modal.classList.add('active');
+        });
+    });
+
+    // Cerrar al hacer clic en la "X"
+    closeModal.addEventListener('click', () => {
+        modal.classList.remove('active');
+    });
+
+    // Cerrar al hacer clic en cualquier parte fuera de la imagen
+    modal.addEventListener('click', (e) => {
+        if (e.target !== modalImg) {
+            modal.classList.remove('active');
+        }
+    });
+
+    // Cerrar con la tecla ESC
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal.classList.contains('active')) {
+            modal.classList.remove('active');
+        }
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Denuncia - Vecinos Alerta</title>
+    <style>
+        body {
+            background-color: #0a2240; /* Azul oscuro institucional */
+            color: #333;
+            background-image: linear-gradient(rgba(10, 5, 81, 0.75), rgba(42, 48, 161, 0.75)), url('imagendenuncia.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            text-align: center;
+            padding: 40px 20px;
+            margin: 0;
+            min-height: 100vh;
+            box-sizing: border-box;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .logo-placeholder {
+            font-size: 50px;
+            margin-bottom: 10px;
+        }
+        h1 {
+            color: #ffffff;
+            margin-bottom: 5px;
+            font-size: 28px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .sub-titulo {
+            color: #f4c430; /* Amarillo/Dorado del logo */
+            font-weight: bold;
+            margin-bottom: 30px;
+            font-size: 14px;
+            text-transform: uppercase;
+        }
+        .card {
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            border-top: 8px solid #f4c430; /* Detalle dorado superior */
+            margin-bottom: 30px;
+            text-align: left;
+        }
+        .card.center {
+            text-align: center;
+        }
+        .card p {
+            color: #666;
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border: 2px solid #e0e0e0;
+            box-sizing: border-box;
+            font-size: 15px;
+            transition: border-color 0.3s;
+        }
+        input[type="file"] {
+            padding: 8px;
+            background: #f8f9fa;
+            cursor: pointer;
+        }
+        input:focus, textarea:focus {
+            border-color: #0a2240;
+            outline: none;
+        }
+        .btn {
+            background-color: #0a2240;
+            color: white;
+            padding: 12px 30px;
+            text-decoration: none;
+            border-radius: 25px;
+            display: inline-block;
+            margin-top: 15px;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+            transition: background 0.3s;
+        }
+        .btn:hover {
+            background-color: #13335c;
+        }
+        .btn-secundario {
+            background-color: #f4c430;
+            color: #0a2240;
+            margin-top: 10px;
+        }
+        .btn-secundario:hover {
+            background-color: #dcb028;
+        }
+        .btn-reset {
+            background-color: #dc3545;
+            margin-top: 10px;
+        }
+        .btn-reset:hover {
+            background-color: #b02a37;
+        }
+
+        /* SECCIÓN DE DENUNCIAS EN VIVO */
+        .seccion-denuncias {
+            background: #ffffff;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            text-align: left;
+            margin-bottom: 30px;
+        }
+        .seccion-denuncias h2 {
+            margin-top: 0;
+            color: #0a2240;
+            font-size: 20px;
+            border-bottom: 2px solid #f4c430;
+            padding-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .item-denuncia {
+            background: #f8f9fa;
+            border-left: 5px solid #d9534f;
+            padding: 15px;
+            margin-top: 15px;
+            border-radius: 6px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            animation: aparecer 0.4s ease-out;
+            position: relative;
+        }
+        @keyframes aparecer {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .item-denuncia h3 {
+            margin: 0 0 8px 0;
+            color: #0a2240;
+            font-size: 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-right: 25px;
+        }
+        .item-denuncia p {
+            margin: 0;
+            color: #444;
+            font-size: 14px;
+            white-space: pre-wrap;
+            line-height: 1.4;
+        }
+        .item-denuncia .fecha {
+            font-size: 12px;
+            color: #888;
+            font-weight: normal;
+        }
+        
+        /* BOTÓN BORRAR */
+        .btn-borrar {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: transparent;
+            border: none;
+            color: #dc3545;
+            cursor: pointer;
+            font-size: 16px;
+            padding: 4px 8px;
+            border-radius: 4px;
+            transition: background 0.2s, color 0.2s;
+        }
+        .btn-borrar:hover {
+            background-color: #ffe6e6;
+            color: #a71d2a;
+        }
+
+        .sin-denuncias {
+            color: #777;
+            font-style: italic;
+            text-align: center;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="logo-placeholder">🚨</div>
+        <h1>Vecinos Alerta</h1>
+        <div class="sub-titulo">Comunidad Segura</div>
+
+        <div class="card center">
+            <p>Tu reporte es confidencial y muy importante para la seguridad de todos.</p>
+            
+            <form id="formDenuncia">
+                <input type="text" id="incidente" placeholder="Tipo de incidente (ej. Robo, Sospechoso)" required>
+                <textarea id="descripcion" placeholder="Describe detalladamente lo ocurrido..." rows="4" required></textarea>
+                <button type="submit" class="btn">Enviar Reporte</button>
+            </form>
+        </div>
+
+        <!-- SECCIÓN DONDE APARECEN LAS DENUNCIAS EN VIVO -->
+        <div class="seccion-denuncias">
+            <h2>
+                <span>📋 Denuncias Realizadas</span>
+            </h2>
+            <div id="listaDenuncias">
+                <p class="sin-denuncias">Aún no se han enviado reportes.</p>
+            </div>
+        </div>
+
+        <!-- NUEVA SECCIÓN: PERSONALIZAR FONDO DE PANTALLA -->
+        <div class="card">
+            <h3 style="color: #0a2240; margin-top: 0; margin-bottom: 15px; font-size: 18px;">🎨 Personalizar Fondo de Pantalla</h3>
+            <p style="font-size: 14px; margin-bottom: 15px;">Sube una imagen desde tu dispositivo o ingresa la URL de una imagen para cambiar el fondo.</p>
+            
+            <label style="font-size: 13px; font-weight: bold; color: #444;">Subir imagen local:</label>
+            <input type="file" id="inputFondoFile" accept="image/*">
+            
+            <label style="font-size: 13px; font-weight: bold; color: #444; display: block; margin-top: 10px;">O ingresa una URL de imagen:</label>
+            <input type="text" id="inputFondoUrl" placeholder="https://ejemplo.com/imagen.jpg">
+            
+            <button type="button" class="btn btn-secundario" id="btnAplicarFondo">Aplicar Fondo</button>
+            <button type="button" class="btn btn-reset" id="btnRestaurarFondo">Restaurar Fondo Original</button>
+        </div>
+    </div>
+
+    <script>
+        const formDenuncia = document.getElementById('formDenuncia');
+        const listaDenuncias = document.getElementById('listaDenuncias');
+        
+        // Elementos de personalización de fondo
+        const inputFondoFile = document.getElementById('inputFondoFile');
+        const inputFondoUrl = document.getElementById('inputFondoUrl');
+        const btnAplicarFondo = document.getElementById('btnAplicarFondo');
+        const btnRestaurarFondo = document.getElementById('btnRestaurarFondo');
+
+        const GRADIENTE_DEFAULT = 'linear-gradient(rgba(10, 5, 81, 0.75), rgba(42, 48, 161, 0.75))';
+
+        // Cargar fondo guardado al iniciar
+        window.addEventListener('DOMContentLoaded', () => {
+            const fondoGuardado = localStorage.getItem('customBackground');
+            if (fondoGuardado) {
+                document.body.style.backgroundImage = `${GRADIENTE_DEFAULT}, url('${fondoGuardado}')`;
+            }
+        });
+
+        // Aplicar fondo mediante URL o archivo cargado
+        btnAplicarFondo.addEventListener('click', () => {
+            // 1. Verificar si seleccionó un archivo local
+            if (inputFondoFile.files && inputFondoFile.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const base64Image = e.target.result;
+                    document.body.style.backgroundImage = `${GRADIENTE_DEFAULT}, url('${base64Image}')`;
+                    localStorage.setItem('customBackground', base64Image);
+                    alert('¡Fondo actualizado exitosamente!');
+                };
+                reader.readAsDataURL(inputFondoFile.files[0]);
+                return;
+            }
+
+            // 2. Verificar si escribió una URL
+            const urlValue = inputFondoUrl.value.trim();
+            if (urlValue) {
+                document.body.style.backgroundImage = `${GRADIENTE_DEFAULT}, url('${urlValue}')`;
+                localStorage.setItem('customBackground', urlValue);
+                alert('¡Fondo actualizado exitosamente!');
+                return;
+            }
+
+            alert('Por favor, selecciona un archivo o ingresa una URL válida.');
+        });
+
+        // Restaurar el fondo original ('imagendenuncia.jpg')
+        btnRestaurarFondo.addEventListener('click', () => {
+            localStorage.removeItem('customBackground');
+            document.body.style.backgroundImage = `${GRADIENTE_DEFAULT}, url('aleta.jpg')`;
+            inputFondoFile.value = '';
+            inputFondoUrl.value = '';
+            alert('Se ha restaurado el fondo original.');
+        });
+
+        // Función para verificar si la lista queda vacía y poner el mensaje por defecto
+        function verificarListaVacia() {
+            if (listaDenuncias.children.length === 0) {
+                listaDenuncias.innerHTML = '<p class="sin-denuncias">Aún no se han enviado reportes.</p>';
+            }
+        }
+
+        // Función para publicar la denuncia en pantalla
+        function publicarDenunciaEnPantalla(incidente, descripcion, id = Date.now()) {
+            const sinDenuncias = listaDenuncias.querySelector('.sin-denuncias');
+            if (sinDenuncias) {
+                sinDenuncias.remove();
+            }
+
+            const ahora = new Date();
+            const fechaFormateada = ahora.toLocaleDateString() + ' ' + ahora.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+            const nuevaCard = document.createElement('div');
+            nuevaCard.className = 'item-denuncia';
+            nuevaCard.dataset.id = id;
+            nuevaCard.innerHTML = `
+                <button class="btn-borrar" title="Eliminar denuncia" onclick="eliminarDenuncia(this, '${id}')">🗑️</button>
+                <h3>
+                    <span>🚨 ${incidente}</span>
+                    <span class="fecha">${fechaFormateada}</span>
+                </h3>
+                <p>${descripcion}</p>
+            `;
+
+            listaDenuncias.prepend(nuevaCard);
+        }
+
+        // Función para eliminar la denuncia al hacer clic en la papelera
+        async function eliminarDenuncia(boton, id) {
+            if (confirm('¿Estás seguro de que deseas eliminar este reporte?')) {
+                const tarjeta = boton.closest('.item-denuncia');
+                tarjeta.remove();
+                verificarListaVacia();
+
+                try {
+                    await fetch(`/api/denuncia/${id}`, {
+                        method: 'DELETE'
+                    });
+                } catch (error) {
+                    console.error('Error al intentar eliminar en el servidor:', error);
+                }
+            }
+        }
+
+        formDenuncia.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const incidente = document.getElementById('incidente').value;
+            const descripcion = document.getElementById('descripcion').value;
+            const idTemporal = Date.now();
+
+            publicarDenunciaEnPantalla(incidente, descripcion, idTemporal);
+            formDenuncia.reset();
+
+            try {
+                const response = await fetch('/api/denuncia', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ id: idTemporal, incidente, descripcion })
+                });
+
+                const data = await response.json();
+
+                if (!data.success) {
+                    console.warn('El servidor devolvió un error:', data.error);
+                }
+            } catch (error) {
+                console.error('Error de conexión con el servidor:', error);
+            }
+        });
+    </script>
+</body>
+</html>

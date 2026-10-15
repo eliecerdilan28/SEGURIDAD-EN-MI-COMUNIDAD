@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VIDEOS DE SEGURIDAD - Seguridad en mi Comunidad</title>
+
+<style>
+    /* --- ESTILOS GENERALES Y NAVEGACIÓN --- */
+    body {
+        margin: 0;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(135deg, rgba(10, 34, 64, 0.85), rgba(28, 55, 95, 0.85)), linear-gradient(135deg, #0a2240, #13335c); 
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        color: #ffffff;
+        min-height: 100vh;
+    } 
+
+    .navbar {
+        background-color: rgba(10, 5, 81, 0.9);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 30px;
+        position: sticky;
+        top: 0;
+        z-index: 2000;
+        backdrop-filter: blur(10px);
+        box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    }
+
+    .navbar .logo {
+        color: white;
+        font-weight: bold;
+        font-size: 1.2em;
+        text-decoration: none;
+    }
+
+    .nav-links {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        gap: 20px;
+    }
+
+    .nav-links a {
+        color: rgba(255, 255, 255, 0.8);
+        text-decoration: none;
+        font-weight: 500;
+        transition: 0.3s;
+    }
+
+    .nav-links a:hover {
+        color: #ffffff;
+        text-shadow: 0 0 10px rgba(255,255,255,0.5);
+    }
+
+    .btn-volver {
+        display: inline-block;
+        margin: 20px 0 0 40px;
+        padding: 10px 20px;
+        border-radius: 20px;
+        background: rgba(255, 255, 255, 0.2);
+        color: #ffffff;
+        text-decoration: none;
+        font-weight: bold;
+        transition: 0.3s;
+    }
+
+    .btn-volver:hover {
+        background: #ffffff;
+        color: #0a0551;
+    }
+
+    /* --- ENCABEZADO Y PRESENTACIÓN --- */
+    header {
+        text-align: center;
+        padding: 30px 20px 10px 20px;
+    }
+
+    header h1 {
+        font-size: 2.8em;
+        margin: 0;
+        color: #ffcc00;
+        text-shadow: 0 2px 5px rgba(0,0,0,0.5);
+        text-transform: uppercase;
+    }
+
+    .contexto-videos {
+        max-width: 800px;
+        margin: 20px auto 30px auto;
+        font-size: 1.15em;
+        line-height: 1.6;
+        opacity: 0.95;
+        text-align: center;
+        background: rgba(0, 0, 0, 0.35);
+        padding: 20px;
+        border-radius: 15px;
+        border-left: 4px solid #ffcc00;
+        backdrop-filter: blur(5px);
+    }
+
+    /* --- GALERÍA DE VIDEOS EN GRILLA --- */
+    .container {
+        padding: 0 40px 40px 40px;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .videos-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+    }
+
+    .video-card {
+        background: rgba(255, 255, 255, 0.08);
+        padding: 20px;
+        border-radius: 15px;
+        border: 1px solid rgba(255,255,255,0.15);
+        backdrop-filter: blur(5px);
+        transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .video-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+    }
+
+    /* REPRODUCTOR LOCAL DE VIDEO */
+    .video-wrapper {
+        width: 100%;
+        border-radius: 10px;
+        overflow: hidden;
+        background: #000000;
+    }
+
+    .video-wrapper video {
+        width: 100%;
+        height: auto;
+        display: block;
+        border-radius: 10px;
+    }
+
+    .video-card h3 {
+        margin-top: 15px;
+        font-size: 1.3em;
+        color: #ffcc00;
+        margin-bottom: 10px;
+    }
+
+    .video-card p {
+        font-size: 0.95em;
+        line-height: 1.4;
+        opacity: 0.9;
+    }
+
+    /* --- TARJETA DE PERSONALIZACIÓN DE FONDO --- */
+    .card-fondo {
+        background: rgba(0, 0, 0, 0.45);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        padding: 25px;
+        border-radius: 15px;
+        max-width: 600px;
+        margin: 40px auto 0 auto;
+        text-align: center;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+    }
+
+    .card-fondo h3 {
+        color: #ffcc00;
+        margin-top: 0;
+        margin-bottom: 15px;
+        font-size: 1.4em;
+    }
+
+    .card-fondo p {
+        font-size: 0.95em;
+        margin-bottom: 15px;
+        opacity: 0.9;
+    }
+
+    .card-fondo label {
+        display: block;
+        font-size: 0.9em;
+        font-weight: bold;
+        margin-top: 12px;
+        margin-bottom: 5px;
+        text-align: left;
+    }
+
+    .card-fondo input[type="text"],
+    .card-fondo input[type="file"] {
+        width: 100%;
+        padding: 10px;
+        border-radius: 8px;
+        border: 1px solid rgba(255,255,255,0.3);
+        background: rgba(255, 255, 255, 0.1);
+        color: white;
+        box-sizing: border-box;
+        font-size: 0.95em;
+    }
+
+    .card-fondo input[type="file"] {
+        cursor: pointer;
+    }
+
+    .card-fondo input[type="text"]::placeholder {
+        color: rgba(255, 255, 255, 0.5);
+    }
+
+    .btn-fondo {
+        width: 100%;
+        padding: 12px;
+        border-radius: 20px;
+        border: none;
+        font-weight: bold;
+        cursor: pointer;
+        margin-top: 15px;
+        font-size: 1em;
+        transition: 0.3s;
+    }
+
+    .btn-aplicar {
+        background-color: #ffcc00;
+        color: #0a0551;
+    }
+
+    .btn-aplicar:hover {
+        background-color: #e6b800;
+    }
+
+    .btn-reset {
+        background-color: #d9534f;
+        color: white;
+    }
+
+    .btn-reset:hover {
+        background-color: #c9302c;
+    }
+
+    /* --- PIE DE PÁGINA --- */
+    footer {
+        text-align: center;
+        padding: 20px;
+        background: rgba(0,0,0,0.6);
+        font-size: 0.9em;
+        opacity: 0.7;
+        margin-top: 40px;
+    }
+
+    /* Adaptación para pantallas móviles */
+    @media (max-width: 600px) {
+        .navbar {
+            flex-direction: column;
+            gap: 10px;
+        }
+        .btn-volver {
+            margin: 10px auto 20px auto;
+            display: block;
+            width: max-content;
+        }
+        .container {
+            padding: 0 20px 40px 20px;
+        }
+    }
+</style>
+</head>
+<body>
+
+<!-- MENÚ DE NAVEGACIÓN -->
+<nav class="navbar">
+    <a href="index.html" class="logo">🛡️ Seguridad Comunidad</a>
+    <ul class="nav-links">
+        <li><a href="prevencion.html">Prevención</a></li>
+        <li><a href="denuncia.html">Denuncia</a></li>
+        <li><a href="participacion.html" style="color: #ffffff; text-shadow: 0 0 10px rgba(255,255,255,0.5);">Videos</a></li>
+        <li><a href="zonas-seguras.html">Zonas Seguras</a></li>
+    </ul>
+</nav>
+
+<a href="index.html" class="btn-volver">⬅️ Aprende Jugando</a>
+
+<!-- ENCABEZADO PRINCIPAL -->
+<header>
+    <h1>📹 VIDEOS DE SEGURIDAD</h1>
+    <div class="contexto-videos">
+        En esta galería encontrarás material audiovisual enfocado en la prevención del delito, protocolos de acción y recomendaciones clave para mantener protegida a nuestra comunidad.
+    </div>
+</header>
+
+<!-- GALERÍA DE VIDEOS -->
+<section class="container">
+    <div class="videos-grid">
+        
+        <!-- Tarjeta de Video 1 -->
+        <div class="video-card">
+            <div class="video-wrapper">
+                <video controls poster="img/portada1.jpg">
+                    <source src="organizar.MP4" type="video/mp4">
+                    Tu navegador no soporta la reproducción de video HTML5.
+                </video>
+            </div>
+            <h3>Cómo organizar tu cuadra</h3>
+            <p>Consejos básicos para armar una red de vigilancia entre vecinos cercanos y mantenerse comunicados.</p>
+        </div>
+
+        <!-- Tarjeta de Video 2 -->
+        <div class="video-card">
+            <div class="video-wrapper">
+                <video controls poster="img/portada2.jpg">
+                    <source src="prevenrobos.MP4" type="video/mp4">
+                    Tu navegador no soporta la reproducción de video HTML5.
+                </video>
+            </div>
+            <h3>Prevención de robos en casa</h3>
+            <p>Medidas disuasorias efectivas y qué acciones tomar si notas actividad sospechosa cerca de tu domicilio.</p>
+        </div>
+
+        <!-- Tarjeta de Video 3 -->
+        <div class="video-card">
+            <div class="video-wrapper">
+                <video controls poster="img/portada3.jpg">
+                    <source src="usodealarmas.MP4" type="video/mp4">
+                    Tu navegador no soporta la reproducción de video HTML5.
+                </video>
+            </div>
+            <h3>Entrevista con el GACIP</h3>
+            <p>Aprende cuándo y cómo activar las alarmas comunitarias de manera responsable sin generar falsas alertas.</p>
+        </div>
+
+        <!-- Tarjeta de Video 4 (NUEVO VIDEO AGREGADO) -->
+        <div class="video-card">
+            <div class="video-wrapper">
+                <video controls poster="video4.mp4">
+                    <source src="video4.mp4" type="video/mp4">
+                    Tu navegador no soporta la reproducción de video HTML5.
+                </video>
+            </div>
+            <h3>Protocolo ante emergencias</h3>
+            <p>Pasos fundamentales sobre cómo actuar y a quién contactar en situaciones de emergencia comunitaria.</p>
+        </div>
+
+    </div>
+
+    <!-- SECCIÓN PARA PERSONALIZAR EL FONDO DE PANTALLA -->
+    <div class="card-fondo">
+        <h3>🎨 Personalizar Fondo de Pantalla</h3>
+        <p>Sube una imagen desde tu dispositivo o pega la URL de una imagen para cambiar el fondo.</p>
+        
+        <label>Subir imagen local:</label>
+        <input type="file" id="inputFondoFile" accept="image/*">
+        
+        <label>O ingresa la URL de una imagen:</label>
+        <input type="text" id="inputFondoUrl" placeholder="https://ejemplo.com/fondo.jpg">
+        
+        <button type="button" class="btn-fondo btn-aplicar" id="btnAplicarFondo">Aplicar Fondo</button>
+        <button type="button" class="btn-fondo btn-reset" id="btnRestaurarFondo">Restaurar Fondo Original</button>
+    </div>
+</section>
+
+<!-- PIE DE PÁGINA -->
+<footer>
+    © 2026 SEGURIDAD EN MI COMUNIDAD | Proyecto de la escuela
+</footer>
+
+<script>
+    // Referencias a los elementos de personalización
+    const inputFondoFile = document.getElementById('inputFondoFile');
+    const inputFondoUrl = document.getElementById('inputFondoUrl');
+    const btnAplicarFondo = document.getElementById('btnAplicarFondo');
+    const btnRestaurarFondo = document.getElementById('btnRestaurarFondo');
+
+    // Gradiente azul marino tenue por defecto sobre la imagen para mantener la legibilidad de los textos
+    const GRADIENTE_DEFAULT = 'linear-gradient(135deg, rgba(10, 34, 64, 0.85), rgba(28, 55, 95, 0.85))';
+
+    // Cargar fondo previamente guardado al iniciar la página
+    window.addEventListener('DOMContentLoaded', () => {
+        const fondoGuardado = localStorage.getItem('customBackgroundVideos');
+        if (fondoGuardado) {
+            document.body.style.backgroundImage = `${GRADIENTE_DEFAULT}, url('${fondoGuardado}')`;
+        }
+    });
+
+    // Aplicar imagen de fondo (Archivo o URL)
+    btnAplicarFondo.addEventListener('click', () => {
+        // 1. Si eligió un archivo local desde su dispositivo
+        if (inputFondoFile.files && inputFondoFile.files[0]) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const base64Image = e.target.result;
+                document.body.style.backgroundImage = `${GRADIENTE_DEFAULT}, url('${base64Image}')`;
+                localStorage.setItem('customBackgroundVideos', base64Image);
+                alert('¡Fondo de pantalla actualizado con éxito!');
+            };
+            reader.readAsDataURL(inputFondoFile.files[0]);
+            return;
+        }
+
+        // 2. Si ingresó una URL de imagen
+        const urlValue = inputFondoUrl.value.trim();
+        if (urlValue) {
+            document.body.style.backgroundImage = `${GRADIENTE_DEFAULT}, url('${urlValue}')`;
+            localStorage.setItem('customBackgroundVideos', urlValue);
+            alert('¡Fondo de pantalla actualizado con éxito!');
+            return;
+        }
+
+        alert('Por favor, selecciona un archivo de tu dispositivo o ingresa una URL de imagen.');
+    });
+
+    // Restaurar al fondo degradado azul marino original
+    btnRestaurarFondo.addEventListener('click', () => {
+        localStorage.removeItem('customBackgroundVideos');
+        document.body.style.backgroundImage = 'linear-gradient(135deg, #0a2240, #13335c)';
+        inputFondoFile.value = '';
+        inputFondoUrl.value = '';
+        alert('Se ha restaurado el fondo original.');
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Participación - Seguridad Ciudadana</title>
+    <style>
+        body {
+            background: linear-gradient(135deg, #1a1a2e, #4b0082);
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+        }
+        .card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            border-radius: 20px;
+            display: inline-block;
+        }
+        .btn {
+            background-color: #000;
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>🤝 Participación Comunitaria</h1>
+    <div class="card">
+        <h2>¿Quieres ser parte de las brigadas?</h2>
+        <p>Únete a nuestro grupo de WhatsApp de vecinos organizados.</p>
+        <br>
+        <a href="#" class="btn">Unirse al Grupo</a>
+        <br><br><br>
+        <a href="Untitled-1.html" style="color: white;">Regresar</a>
+    </div>
+</body>
+</html>
