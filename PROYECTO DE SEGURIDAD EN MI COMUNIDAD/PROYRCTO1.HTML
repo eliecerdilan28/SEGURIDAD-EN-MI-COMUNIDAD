@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seguridad Comunitaria - Vecinos Unidos</title>
+    <style>
+        /* Estilos base y tipografía */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8fafc;
+            color: #1e293b;
+        }
+
+        /* Barra de navegación */
+        header {
+            background-color: #1e3a8a;
+            color: #ffffff;
+            padding: 15px 20px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 1.5rem;
+        }
+
+        nav a {
+            color: #ffffff;
+            text-decoration: none;
+            margin-left: 20px;
+            font-weight: 600;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        /* Contenedor principal */
+        .main-content {
+            max-width: 1000px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        /* Sección de Alerta / Banner */
+        .alert-banner {
+            background-color: #fee2e2;
+            border-left: 6px solid #dc2626;
+            color: #991b1b;
+            padding: 20px;
+            border-radius: 6px;
+            margin-bottom: 30px;
+        }
+
+        .alert-banner h2 {
+            margin-top: 0;
+        }
+
+        /* Cuadrícula de secciones (Consejos y Teléfonos) */
+        .grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+        }
+
+        @media (max-width: 768px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Tarjetas de información */
+        .card {
+            background-color: #ffffff;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+            margin-bottom: 25px;
+        }
+
+        .card h2 {
+            color: #1e3a8a;
+            margin-top: 0;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 10px;
+        }
+
+        /* Estilos de lista para consejos */
+        .tips-list {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .tips-list li {
+            padding: 12px 0;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .tips-list strong {
+            color: #2563eb;
+        }
+
+        /* Directorio de Emergencia */
+        .emergency-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .emergency-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #f1f5f9;
+            padding: 12px;
+            margin-bottom: 10px;
+            border-radius: 6px;
+            font-weight: bold;
+        }
+
+        .phone-number {
+            background-color: #dc2626;
+            color: white;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-family: monospace;
+        }
+
+        /* Pie de página */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #0f172a;
+            color: #94a3b8;
+            margin-top: 60px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Encabezado -->
+    <header>
+        <div class="nav-container">
+            <h1>🛡️ Red de Seguridad Vecinal</h1>
+            <nav>
+                <a href="#prevencion">Prevención</a>
+                <a href="#emergencias">Emergencias</a>
+                <a href="#reportes">Reportes</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Contenido Principal -->
+    <main class="main-content">
+
+        <!-- Banner de Alerta Activa -->
+        <section class="alert-banner">
+            <h2>⚠️ Canal de Comunicación Importante</h2>
+            <p>Mantente alerta ante cualquier actividad sospechosa en los accesos de la colonia. Recuerda reportar de inmediato en el grupo de WhatsApp vecinal y a las autoridades competentes.</p>
+        </section>
+
+        <!-- Distribución del contenido -->
+        <div class="grid">
+            
+            <!-- Columna Izquierda: Consejos y Reportes -->
+            <div>
+                <section class="card" id="prevencion">
+                    <h2>Manual de Prevención en Casa</h2>
+                    <p>La seguridad de nuestro barrio empieza por las acciones individuales. Sigue estas recomendaciones clave:</p>
+                    <ul class="tips-list">
+                        <li><strong>Iluminación:</strong> Mantén encendidas las luces de la entrada durante la noche.</li>
+                        <li><strong>Cerraduras dobles:</strong> Asegura portones y ventanas al salir, aunque sea por poco tiempo.</li>
+                        <li><strong>Comunicación:</strong> Avisa a tus vecinos de confianza si vas a salir de viaje por varios días.</li>
+                        <li><strong>Integración:</strong> Conoce a las personas que viven a tu alrededor para identificar rostros extraños fácilmente.</li>
+                    </ul>
+                </section>
+
+                <section class="card" id="reportes">
+                    <h2>¿Cómo realizar un reporte vecinal?</h2>
+                    <p>Si notas luminarias descompuestas, vehículos abandonados o alarmas encendidas, sigue el protocolo establecido:</p>
+                    <ol style="line-height: 1.6;">
+                        <li>Mantén la calma y observa las características del evento (color de auto, vestimenta, etc.).</li>
+                        <li>Llama primero a las líneas de emergencia oficiales.</li>
+                        <li>Notifica al coordinador de tu manzana en la aplicación de seguridad del vecindario.</li>
+                    </ol>
+                </section>
+            </div>
+
+            <!-- Columna Derecha: Números de Emergencia -->
+            <aside>
+                <div class="card" id="emergencias">
+                    <h2>🚨 Emergencias</h2>
+                    <p>Guarda estos números en los accesos rápidos de tu teléfono móvil:</p>
+                    <ul class="emergency-list">
+                        <li class="emergency-item">
+                            <span>Línea Nacional</span>
+                            <span class="phone-number">SOS</span>
+                        </li>
+                        <li class="emergency-item">
+                            <span>Policía Local</span>
+                            <span class="phone-number">555-0199</span>
+                        </li>
+                        <li class="emergency-item">
+                            <span>Bomberos</span>
+                            <span class="phone-number">555-0122</span>
+                        </li>
+                        <li class="emergency-item">
+                            <span>Ambulancias</span>
+                            <span class="phone-number">555-0155</span>
+                        </li>
+                    </ul>
+                </div>
+            </aside>
+
+        </div>
+
+    </main>
+
+    <!-- Pie de página -->
+    <footer>
+        <p>© 2026 Comité de Seguridad Vecinal. Tu participación es nuestra mayor protección.</p>
+    </footer>
+
+    <html>
+      <head>
+        <meta charset="UTF-8">
+        <title>SEGURIDAD EN MI COMUNIDAD</title>
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="application-name" content="SEGURIDAD EN MI COMUNIDAD">
+        <link rel="shortcut icon" href="favicon.ico">
+        <link rel="icon" sizes="16x16" href="favicon.ico">
+        <link rel="icon" sizes="72x72" href="icon-72.png">
+        <link rel="icon" sizes="192x192" href="icon-192.png">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script type="text/javascript" src="https://clic.xtec.cat/dist/jclic.js/jclic.min.js"></script>
+      </head>
+      <body style="margin:0">
+        <div class ="JClic" data-project="seguridad_en_mi_comunidad.jclic"></div>
+      </body>
+    </html>
+</body>
+</html>

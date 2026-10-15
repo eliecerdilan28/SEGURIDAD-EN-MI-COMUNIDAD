@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Zonas Seguras - Seguridad Ciudadana</title>
+    <style>
+        body {
+            /* Capa oscura translúcida sobre la imagen para asegurar legibilidad */
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('seguridad de zona.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #ffffff; /* Blanco puro para el texto general */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+            min-height: 100vh;
+            box-sizing: border-box;
+        }
+
+        /* Estilos generales para dar sombra a los textos y mejorar contraste */
+        h1, h2, h3, p {
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.85);
+        }
+
+        /* Títulos principales en Amarillo Neón */
+        h1, .map-placeholder h3 {
+            color: #ffe600;
+        }
+
+        .header-zonas {
+            padding: 40px 20px;
+            /* Fondo semi-transparente oscuro para dar máximo contraste al encabezado */
+            background: rgba(0, 0, 0, 0.35);
+            border-radius: 15px;
+            max-width: 800px;
+            margin: 0 auto 20px auto;
+            backdrop-filter: blur(4px);
+        }
+
+        .map-placeholder {
+            background: rgba(0, 0, 0, 0.3);
+            border: 2px dashed rgba(255, 255, 255, 0.4);
+            border-radius: 20px;
+            padding: 25px;
+            margin: 20px auto;
+            max-width: 800px;
+            backdrop-filter: blur(8px);
+        }
+
+        .lista-puntos {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .punto-seguro {
+            background: rgba(0, 0, 0, 0.45); /* Fondo oscuro translúcido para legibilidad perfecta */
+            padding: 20px;
+            border-radius: 15px;
+            border-left: 5px solid #ffe600; /* Detalle de línea en amarillo a juego con los títulos */
+            text-align: left;
+            backdrop-filter: blur(5px);
+        }
+
+        /* Títulos dentro de las tarjetas en Blanco Puro */
+        .punto-seguro h2 {
+            color: #ffffff;
+            margin-top: 0;
+        }
+
+        /* ESTILOS DE LA TARJETA DE PERSONALIZACIÓN DE FONDO */
+        .card-fondo {
+            background: rgba(0, 0, 0, 0.45);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 25px;
+            border-radius: 15px;
+            max-width: 800px;
+            margin: 30px auto;
+            text-align: left;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+        }
+
+        .card-fondo h3 {
+            color: #ffe600;
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+
+        .card-fondo p {
+            font-size: 0.95em;
+            margin-bottom: 15px;
+            opacity: 0.9;
+        }
+
+        .card-fondo label {
+            display: block;
+            font-size: 0.9em;
+            font-weight: bold;
+            margin-top: 10px;
+            margin-bottom: 5px;
+        }
+
+        .card-fondo input[type="text"],
+        .card-fondo input[type="file"] {
+            width: 100%;
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid rgba(255,255,255,0.3);
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            box-sizing: border-box;
+            font-size: 0.95em;
+        }
+
+        .card-fondo input[type="file"] {
+            cursor: pointer;
+        }
+
+        .card-fondo input[type="text"]::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .btn-fondo {
+            width: 100%;
+            padding: 12px;
+            border-radius: 25px;
+            border: none;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 12px;
+            font-size: 1em;
+            transition: 0.3s;
+        }
+
+        .btn-aplicar {
+            background-color: #ffe600;
+            color: #000000;
+        }
+
+        .btn-aplicar:hover {
+            background-color: #e6cb00;
+        }
+
+        .btn-reset {
+            background-color: #d9534f;
+            color: white;
+        }
+
+        .btn-reset:hover {
+            background-color: #c9302c;
+        }
+
+        .btn-volver {
+            background-color: #000000;
+            color: #ffffff;
+            padding: 12px 25px;
+            text-decoration: none;
+            border-radius: 25px;
+            display: inline-block;
+            margin-top: 20px;
+            transition: 0.3s;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .btn-volver:hover {
+            background-color: #ffe600;
+            color: #000000;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header-zonas">
+        <h1>📍 Zonas Seguras de la Comunidad</h1>
+        <p>Identifica los puntos de auxilio y áreas monitoreadas 24/7 en Zona La Primera.</p>
+    </div>
+
+    <div class="map-placeholder">
+        <iframe 
+            src="https://maps.google.com/maps?q=Zona+La+Primera,+El+Alto,+Bolivia&amp;t=&amp;z=15&amp;ie=UTF8&amp;iwloc=&amp;output=embed" 
+            width="100%" 
+            height="400" 
+            style="border:0; border-radius: 15px;" 
+            allowfullscreen="" 
+            loading="lazy">
+        </iframe>
+        <h3>🗺️ Mapa Comunitario - Zona La Primera (El Alto)</h3>
+        <p>Ubicación y mapa interactivo delimitado a la Zona La Primera y sus alrededores.</p>
+    </div>
+
+    <div class="lista-puntos">
+        <div class="punto-seguro">
+            <h2>Punto 01</h2>
+            <p><strong>Ubicación:</strong> Plaza Principal</p>
+            <p>✅ Información sobre seguridad</p>
+            <p>✅ Acceso desde celular</p>
+        </div>
+
+        <div class="punto-seguro">
+            <h2>Punto 02</h2>
+            <p><strong>Ubicación:</strong> Módulo Policial</p>
+            <p>✅ Atención 24 horas</p>
+            <p>📞 Tel: 110</p>
+        </div>
+
+        <div class="punto-seguro">
+            <h2>Punto 03</h2>
+            <p><strong>Ubicación:</strong> Colegio La Primera</p>
+            <p>✅ Botón de pánico instalado</p>
+            <p>✅ Zona escolar protegida</p>
+        </div>
+    </div>
+
+    <!-- SECCIÓN PARA PERSONALIZAR EL FONDO DE PANTALLA -->
+    <div class="card-fondo">
+        <h3>🎨 Personalizar Fondo de Pantalla</h3>
+        <p>Sube una imagen desde tu dispositivo o pega la URL de una imagen para cambiar el fondo.</p>
+        
+        <label>Subir imagen local:</label>
+        <input type="file" id="inputFondoFile" accept="image/*">
+        
+        <label>O ingresa la URL de una imagen:</label>
+        <input type="text" id="inputFondoUrl" placeholder="https://ejemplo.com/fondo.jpg">
+        
+        <button type="button" class="btn-fondo btn-aplicar" id="btnAplicarFondo">Aplicar Fondo</button>
+        <button type="button" class="btn-fondo btn-reset" id="btnRestaurarFondo">Restaurar Fondo Original</button>
+    </div>
+
+    <a href="Untitled-1.html" class="btn-volver">← Volver al Mapa Principal</a>
+
+    <script>
+        const inputFondoFile = document.getElementById('inputFondoFile');
+        const inputFondoUrl = document.getElementById('inputFondoUrl');
+        const btnAplicarFondo = document.getElementById('btnAplicarFondo');
+        const btnRestaurarFondo = document.getElementById('btnRestaurarFondo');
+
+        const OVERLAY_DEFAULT = 'linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5))';
+
+        // Cargar fondo guardado al iniciar la página
+        window.addEventListener('DOMContentLoaded', () => {
+            const fondoGuardado = localStorage.getItem('customBackgroundZonas');
+            if (fondoGuardado) {
+                document.body.style.background = `${OVERLAY_DEFAULT}, url('${fondoGuardado}') no-repeat center center fixed`;
+                document.body.style.backgroundSize = 'cover';
+            }
+        });
+
+        // Aplicar fondo mediante archivo o URL
+        btnAplicarFondo.addEventListener('click', () => {
+            if (inputFondoFile.files && inputFondoFile.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const base64Image = e.target.result;
+                    document.body.style.background = `${OVERLAY_DEFAULT}, url('${base64Image}') no-repeat center center fixed`;
+                    document.body.style.backgroundSize = 'cover';
+                    localStorage.setItem('customBackgroundZonas', base64Image);
+                    alert('¡Fondo de pantalla actualizado con éxito!');
+                };
+                reader.readAsDataURL(inputFondoFile.files[0]);
+                return;
+            }
+
+            const urlValue = inputFondoUrl.value.trim();
+            if (urlValue) {
+                document.body.style.background = `${OVERLAY_DEFAULT}, url('${urlValue}') no-repeat center center fixed`;
+                document.body.style.backgroundSize = 'cover';
+                localStorage.setItem('customBackgroundZonas', urlValue);
+                alert('¡Fondo de pantalla actualizado con éxito!');
+                return;
+            }
+
+            alert('Por favor, selecciona un archivo o ingresa una URL válida.');
+        });
+
+        // Restaurar fondo original
+        btnRestaurarFondo.addEventListener('click', () => {
+            localStorage.removeItem('customBackgroundZonas');
+            document.body.style.background = `${OVERLAY_DEFAULT}, url('seguridad de zona.jpg') no-repeat center center fixed`;
+            document.body.style.backgroundSize = 'cover';
+            inputFondoFile.value = '';
+            inputFondoUrl.value = '';
+            alert('Se ha restaurado el fondo original.');
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+{
+  "title": "SEGURIDAD EN MI COMUNIDAD",
+  "date": "10/6/26",
+  "description": {},
+  "license": {
+    "es": "Esta obra está bajo una licencia de Creative Commons <a href=\"https://creativecommons.org/licenses/by-nc-sa/4.0\">BY-NC-SA<\/a>"
+  },
+  "meta_langs": [
+    "es"
+  ],
+  "mainFile": "seguridad_en_mi_comunidad.jclic",
+  "cover": "project-cover.jpg",
+  "thumbnail": "project-thumb.jpg",
+  "activities": 6,
+  "mediaFiles": 12,
+  "totalSize": 325951,
+  "files": [
+    "6a528eae-7b05-4f85-9572-74399ebb0e23-resized.jpg",
+    "6a528eae-7b05-4f85-9572-74399ebb0e23-resized1.jpg",
+    "camara.jpg",
+    "download.jpg",
+    "favicon.ico",
+    "hhhhhh.jpg",
+    "icon-192.png",
+    "icon-72.png",
+    "img-20260610-wa0008-resized1.jpg",
+    "imsmanifest.xml",
+    "index.html",
+    "ladron1-resized.jpg",
+    "project-cover.jpg",
+    "project-thumb.jpg",
+    "project.json",
+    "seguridad_en_mi_comunidad.jclic",
+    "seguridad_en_mi_comunidad.jclic.js"
+  ]
+}
